@@ -25,7 +25,7 @@
     <!--使用spring-io进行jar包版本的维护-->
     <dependencyManagement>
         <dependencies>
-            <!--主要是spring-boot-->
+            <!-- 主要是spring-boot：2.0.8.RELEASE -->
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
@@ -33,7 +33,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--Finchley SR2-->
+            <!-- Finchley SR2 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -50,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

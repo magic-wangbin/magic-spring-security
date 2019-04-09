@@ -6,7 +6,12 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   session:
     store-type: none
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+
 server:
   servlet:
     session:
       timeout: 600
+
