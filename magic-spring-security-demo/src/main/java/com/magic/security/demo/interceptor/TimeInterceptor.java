@@ -50,10 +50,14 @@ public class TimeInterceptor implements HandlerInterceptor {
         long beginTime = methodInvokeTimeThreadLocal.get();// 得到线程绑定的局部变量（开始时间）
         long consumeTime = endTime - beginTime;// 消耗的时间
 
-        String className =((HandlerMethod)handler).getBeanType().getSimpleName();
-        String method = ((HandlerMethod)handler).getMethod().getName();
+        // 判断请求路径的正确性
+        if(handler instanceof HandlerMethod){
+            String className =((HandlerMethod)handler).getBean().getClass().getSimpleName();
+            String method = ((HandlerMethod)handler).getMethod().getName();
 
-        logger.info("[{}->{}->{}->{}] consume {} millis",className,method,request.getRequestURI(),interceptionName,consumeTime);
+            logger.info("[{}->{}->{}->{}] consume {} millis",className,method,request.getRequestURI(),interceptionName,consumeTime);
+        }
+
     }
 
 }
