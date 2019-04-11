@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author zhailiang
+ * @author wang.bin
  *
  */
 @Aspect
@@ -41,8 +41,6 @@ public class ValidateAspect {
 
     @Around("execution(* com.magic.security.demo.web.UserController.*(..))")
     public Object handleValidateResult(ProceedingJoinPoint pjp) throws Throwable {
-
-        System.out.println("进入切片");
 
         Object[] args = pjp.getArgs();
         if (args.length == 0) {
@@ -70,18 +68,9 @@ public class ValidateAspect {
         Set<ConstraintViolation<Object>> validResult = validMethodParams(target, method, args);
         //
         if (!validResult.isEmpty()) {
-            System.out.println("有校验结果");
             String[] parameterNames = parameterNameDiscoverer.getParameterNames(method);
             // 获得方法的参数名称
             for (ConstraintViolation<Object> constraintViolation : validResult) {
-                PathImpl pathImpl = (PathImpl) constraintViolation.getPropertyPath();
-                // 获得校验的参数路径信息
-                int paramIndex = pathImpl.getLeafNode().getParameterIndex();
-                // 获得校验的参数位置
-                String paramName = parameterNames[paramIndex];
-                // 获得校验的参数名称
-                System.out.println(paramName);
-                Object object = constraintViolation.getExecutableReturnValue();
                 //校验信息
                 throw new ValidateException(constraintViolation.getMessage());
             }

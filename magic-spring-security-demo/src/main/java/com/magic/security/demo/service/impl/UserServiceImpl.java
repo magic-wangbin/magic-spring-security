@@ -16,9 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(String userId) {
-        System.out.println("begin");
         helloService.sayHello(userId);
-        System.out.println("start");
         if("100".equals(userId)){
             User user = new User();
             user.setUserId("100");
