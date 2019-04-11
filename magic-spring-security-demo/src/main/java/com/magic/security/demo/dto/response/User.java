@@ -4,7 +4,6 @@
 package com.magic.security.demo.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.magic.security.demo.validator.annotacion.UserValidator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
@@ -20,7 +19,7 @@ public class User {
     public interface UserSimpleView {};
     public interface UserDetailView extends UserSimpleView {};
 
-    @UserValidator(message = "用户不存在！")
+//    @UserValidator(message = "用户不存在！")
     private String userId;
 
     @JsonView(UserSimpleView.class)

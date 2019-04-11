@@ -5,12 +5,11 @@ import com.magic.security.demo.dto.response.User;
 import com.magic.security.demo.service.UserService;
 import com.magic.security.demo.validator.annotacion.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-@Component
-public class UserValidatorService implements ConstraintValidator<UserValidator,String> {
+
+public class UserValidatorService implements ConstraintValidator<UserValidator, String> {
 
     @Autowired
     private UserService userService;
@@ -46,9 +45,9 @@ public class UserValidatorService implements ConstraintValidator<UserValidator,S
      */
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        System.out.println("用户信息的校验！");
+
         User user = userService.findById(value);
-        if(user==null){
+        if (user == null) {
             return false;
         }
         return true;

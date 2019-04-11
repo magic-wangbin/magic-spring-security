@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController {
@@ -56,7 +57,7 @@ public class UserController extends BaseController {
 
     @JsonView(User.UserDetailView.class)
     @GetMapping("/validate/{userId}")
-    public User validateUserId(@PathVariable Long userId, @Validated @UserValidator String id) {
+    public User validateUserId(@PathVariable Long userId, @UserValidator @RequestParam String id) {
 
         User user = new User();
         user.setUserId("100");
