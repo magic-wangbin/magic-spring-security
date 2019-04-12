@@ -11,6 +11,7 @@
 
     <artifactId>magic-spring-security-core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <!--core包为基础包，提供给app和browser基础依赖-->
     <dependencies>
 

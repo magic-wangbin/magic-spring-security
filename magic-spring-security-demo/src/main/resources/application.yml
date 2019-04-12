@@ -15,3 +15,9 @@ server:
     session:
       timeout: 600
 
+magic:
+  security:
+    browser:
+#      loginPage: /demo-signIn.html
+      loginType: REDIRECT
+
