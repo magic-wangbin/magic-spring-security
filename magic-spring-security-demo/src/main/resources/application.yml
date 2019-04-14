@@ -19,5 +19,5 @@ magic:
   security:
     browser:
 #      loginPage: /demo-signIn.html
-      loginType: REDIRECT
+      loginType: JSON
 
