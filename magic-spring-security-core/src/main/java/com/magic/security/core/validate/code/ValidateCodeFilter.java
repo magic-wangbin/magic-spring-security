@@ -1,6 +1,9 @@
 package com.magic.security.core.validate.code;
 
 import com.magic.security.core.properties.SecurityProperties;
+import com.magic.security.core.validate.code.controller.ValidateCodeController;
+import com.magic.security.core.validate.code.exception.ValidateCodeException;
+import com.magic.security.core.validate.code.image.ImageCode;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -70,11 +73,11 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     }
 
     /**
-     * 验证码的校验
+     * 验证码的校验 TODO
      */
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
         //从session中取值
-        ImageCode imageCodeInSession = (ImageCode) sessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
+        ImageCode imageCodeInSession = (ImageCode) sessionStrategy.getAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX);
 
         //从request中取值
         String imageCode = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
@@ -88,7 +91,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         }
 
         if (imageCodeInSession.isExpried()) {
-            sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+            sessionStrategy.removeAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX);
             throw new ValidateCodeException("验证码已经过期！");
         }
 
@@ -96,7 +99,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
             throw new ValidateCodeException("验证码不匹配！");
         }
 
-        sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+        sessionStrategy.removeAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX);
 
     }
 
