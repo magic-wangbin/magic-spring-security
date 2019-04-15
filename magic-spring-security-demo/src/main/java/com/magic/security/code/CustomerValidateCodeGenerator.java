@@ -2,9 +2,8 @@ package com.magic.security.code;
 
 import com.magic.security.core.validate.code.ImageCode;
 import com.magic.security.core.validate.code.ValidateCodeGenerator;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
-@Component(value = "imageCodeGenerator")
+//@Component(value = "imageCodeGenerator")
 public class CustomerValidateCodeGenerator implements ValidateCodeGenerator {
     @Override
     public ImageCode generator(ServletWebRequest request) {
