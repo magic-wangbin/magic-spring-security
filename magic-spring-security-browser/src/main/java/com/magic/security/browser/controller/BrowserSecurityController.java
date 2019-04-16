@@ -51,10 +51,9 @@ public class BrowserSecurityController {
             logger.info("引发跳转的url地址为：" + redirectUrl);
             if (StringUtils.endsWithIgnoreCase(redirectUrl, ".html")) {
                 redirectStrategy.sendRedirect(request, response,
-                        //TODO
                         securityProperties.getBrowser().getLoginPage());
             }
         }
-        return new SimpleResponse("访问的服务需要身份认证，请先进行登录");
+        return new SimpleResponse("访问的服务需要身份认证，请先进行登录!");
     }
 }

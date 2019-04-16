@@ -1,6 +1,7 @@
 package com.magic.security.core.validate.code;
 
 import com.magic.security.core.properties.SecurityProperties;
+import com.magic.security.core.validate.code.exception.ValidateCodeException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -39,13 +40,13 @@ public class ValidateSmsCodeFilter extends OncePerRequestFilter implements Initi
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
         //初始化URL
-        String[] urls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getImage().getUrl(), ",");
+        String[] urls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getSms().getUrl(), ",");
         if(urls!=null){
             for (String temp : urls) {
                 urlSet.add(temp);
             }
         }
-        urlSet.add("/authentication/form");
+        urlSet.add("/authentication/mobile");
     }
 
     @Override
@@ -74,29 +75,29 @@ public class ValidateSmsCodeFilter extends OncePerRequestFilter implements Initi
      */
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
         //从session中取值
-        ImageCode imageCodeInSession = (ImageCode) sessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
+        ValidateCode codeInSession = (ValidateCode) sessionStrategy.getAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX.concat("SMS"));
 
         //从request中取值
-        String imageCode = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
+        String smsCode = ServletRequestUtils.getStringParameter(request.getRequest(), "smsCode");
 
-        if (StringUtils.isBlank(imageCode)) {
-            throw new ValidateCodeException("图形验证码的值不能为空！");
+        if (StringUtils.isBlank(smsCode)) {
+            throw new ValidateCodeException("验证码的值不能为空！");
         }
 
-        if (imageCodeInSession == null) {
+        if (codeInSession == null) {
             throw new ValidateCodeException("验证码不存在！");
         }
 
-        if (imageCodeInSession.isExpried()) {
-            sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+        if (codeInSession.isExpried()) {
+            sessionStrategy.removeAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX.concat("SMS"));
             throw new ValidateCodeException("验证码已经过期！");
         }
 
-        if (!StringUtils.endsWithIgnoreCase(imageCodeInSession.getCode(), imageCode)) {
+        if (!StringUtils.endsWithIgnoreCase(codeInSession.getCode(), smsCode)) {
             throw new ValidateCodeException("验证码不匹配！");
         }
 
-        sessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+        sessionStrategy.removeAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX.concat("SMS"));
 
     }
 
