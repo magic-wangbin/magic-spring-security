@@ -1,5 +1,5 @@
 package com.magic.security.core.validate.code.sms;
 
-public interface SmsCodeSender {
+public interface SmsValidateCodeSender {
     void send(String mobile,String code);
 }

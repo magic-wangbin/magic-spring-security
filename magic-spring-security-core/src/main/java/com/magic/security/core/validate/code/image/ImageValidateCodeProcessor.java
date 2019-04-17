@@ -5,8 +5,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;
+
 @Component(value = "imageValidateCodeProcessor")
-public class ImageCodeProcessor  extends AbstractValidateCodeProcessor<ImageCode> {
+public class ImageValidateCodeProcessor extends AbstractValidateCodeProcessor<ImageCode> {
 
     /**
      * 发送图形验证码，将其写到响应中

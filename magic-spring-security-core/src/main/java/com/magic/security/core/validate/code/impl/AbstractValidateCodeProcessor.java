@@ -1,7 +1,7 @@
 package com.magic.security.core.validate.code.impl;
 
 import com.magic.security.core.properties.enums.ValidateCodeType;
-import com.magic.security.core.validate.code.ValidateCode;
+import com.magic.security.core.validate.code.sms.ValidateCode;
 import com.magic.security.core.validate.code.ValidateCodeGenerator;
 import com.magic.security.core.validate.code.ValidateCodeProcessor;
 import com.magic.security.core.validate.code.exception.ValidateCodeException;
@@ -76,7 +76,7 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
      * @return
      */
     private ValidateCodeType getValidateCodeType(ServletWebRequest request) {
-        String type = StringUtils.substringBefore(getClass().getSimpleName(), "CodeProcessor");
+        String type = StringUtils.substringBefore(getClass().getSimpleName(), "ValidateCodeProcessor");
         return ValidateCodeType.valueOf(type.toUpperCase());
     }
 

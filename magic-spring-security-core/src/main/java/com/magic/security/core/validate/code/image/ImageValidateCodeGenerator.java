@@ -8,7 +8,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-public class ImageCodeGenerator implements ValidateCodeGenerator {
+public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
 
     private SecurityProperties securityProperties;
 

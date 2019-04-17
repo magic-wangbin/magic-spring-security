@@ -2,9 +2,9 @@ package com.magic.security.core.config;
 
 import com.magic.security.core.properties.SecurityProperties;
 import com.magic.security.core.validate.code.*;
-import com.magic.security.core.validate.code.image.ImageCodeGenerator;
-import com.magic.security.core.validate.code.sms.DefaultSmsCodeSender;
-import com.magic.security.core.validate.code.sms.SmsCodeSender;
+import com.magic.security.core.validate.code.image.ImageValidateCodeGenerator;
+import com.magic.security.core.validate.code.sms.DefaultSmsValidateCodeSender;
+import com.magic.security.core.validate.code.sms.SmsValidateCodeSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -19,14 +19,14 @@ public class ValidateCodeBeanConfig {
     @Bean
     @ConditionalOnMissingBean(name = "imageValidateCodeGenerator")
     public ValidateCodeGenerator imageValidateCodeGenerator(){
-        ImageCodeGenerator imageCodeGenerator = new ImageCodeGenerator();
-        imageCodeGenerator.setSecurityProperties(securityProperties);
-        return imageCodeGenerator;
+        ImageValidateCodeGenerator imageValidateCodeGenerator = new ImageValidateCodeGenerator();
+        imageValidateCodeGenerator.setSecurityProperties(securityProperties);
+        return imageValidateCodeGenerator;
     }
 
     @Bean
-    @ConditionalOnMissingBean(value = SmsCodeSender.class)
-    public SmsCodeSender smsCodeSender(){
-        return new DefaultSmsCodeSender();
+    @ConditionalOnMissingBean(value = SmsValidateCodeSender.class)
+    public SmsValidateCodeSender smsCodeSender(){
+        return new DefaultSmsValidateCodeSender();
     }
 }

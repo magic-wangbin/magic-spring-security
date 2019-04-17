@@ -1,6 +1,6 @@
 package com.magic.security.core.validate.code.image;
 
-import com.magic.security.core.validate.code.ValidateCode;
+import com.magic.security.core.validate.code.sms.ValidateCode;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
