@@ -1,12 +1,11 @@
 package com.magic.security.core.validate.code.image;
 
-import com.magic.security.core.validate.code.ValidateCode;
 import com.magic.security.core.validate.code.impl.AbstractValidateCodeProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;
-@Component(value = "imageCodeProcessor")
+@Component(value = "imageValidateCodeProcessor")
 public class ImageCodeProcessor  extends AbstractValidateCodeProcessor<ImageCode> {
 
     /**

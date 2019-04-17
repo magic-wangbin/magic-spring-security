@@ -1,5 +1,7 @@
 package com.magic.security.core.properties;
 
+import com.magic.security.core.properties.enums.LoginType;
+
 public class BrowserProperties {
 
     private String loginPage = "/imooc-signIn.html";

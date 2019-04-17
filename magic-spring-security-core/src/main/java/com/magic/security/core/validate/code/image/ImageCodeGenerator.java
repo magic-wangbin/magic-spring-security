@@ -2,7 +2,6 @@ package com.magic.security.core.validate.code.image;
 
 import com.magic.security.core.properties.SecurityProperties;
 import com.magic.security.core.validate.code.ValidateCodeGenerator;
-import com.magic.security.core.validate.code.image.ImageCode;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -14,7 +13,7 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
     private SecurityProperties securityProperties;
 
     @Override
-    public ImageCode generator(ServletWebRequest servletWebRequest) {
+    public ImageCode generate(ServletWebRequest servletWebRequest) {
         int width = ServletRequestUtils.getIntParameter(servletWebRequest.getRequest(),"width",securityProperties.getCode().getImage().getWidth());
         int height = ServletRequestUtils.getIntParameter(servletWebRequest.getRequest(),"height",securityProperties.getCode().getImage().getHeight());
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
