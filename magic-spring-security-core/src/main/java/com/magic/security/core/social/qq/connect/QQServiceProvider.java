@@ -1,5 +1,7 @@
-package com.magic.security.social.qq.api;
+package com.magic.security.core.social.qq.connect;
 
+import com.magic.security.core.social.qq.api.QQApi;
+import com.magic.security.core.social.qq.api.QQApiImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.social.oauth2.OAuth2Template;
 

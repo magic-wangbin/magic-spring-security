@@ -25,5 +25,13 @@ magic:
         length: 4
         width: 100
         #url: /user,/user/*
+    social:
+      qq:
+        app-id: 217911
+        app-secret: b68b1fe2abdf241466a0eae7731ab45
+logging:
+  level:
+    com.magic.security: debug
+
 
 

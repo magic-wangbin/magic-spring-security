@@ -1,4 +1,4 @@
-package com.magic.security.social.qq.api;
+package com.magic.security.core.social.qq.api;
 
 public interface QQApi {
     QQUserInfo getUserInfo();
