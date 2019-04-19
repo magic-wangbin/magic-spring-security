@@ -21,6 +21,11 @@ public class QQAutoConfig extends SocialConfigurerAdapter {
     private SecurityProperties springProperties;
 
     @Override
+    public UserIdSource getUserIdSource() {
+        return new AuthenticationNameUserIdSource();
+    }
+
+    @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer configurer, Environment environment) {
         configurer.addConnectionFactory(this.createConnectionFactory());
     }
@@ -33,8 +38,5 @@ public class QQAutoConfig extends SocialConfigurerAdapter {
         return new QQConnectionFactory(providerId, appId, appSecret);
     }
 
-    @Override
-    public UserIdSource getUserIdSource() {
-        return new AuthenticationNameUserIdSource();
-    }
+
 }
