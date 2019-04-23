@@ -1,5 +1,6 @@
 package com.magic.security.core.social.config;
 
+import com.magic.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     /**
      * 数据库持久化配置.
      *
@@ -28,7 +32,6 @@ public class SocialConfig extends SocialConfigurerAdapter {
      */
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-//        return super.getUsersConnectionRepository(connectionFactoryLocator);
         JdbcUsersConnectionRepository jdbcUsersConnectionRepository = new JdbcUsersConnectionRepository(
             dataSource,
             connectionFactoryLocator,
@@ -39,8 +42,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     }
 
     @Bean
-    public SpringSocialConfigurer magicSocialSecurityConfig() {
-        return new SpringSocialConfigurer();
+    public SpringSocialConfigurer customSocialConfigurer() {
+        String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
+        return new CustomSocialConfigurer(filterProcessesUrl);
     }
 
 }

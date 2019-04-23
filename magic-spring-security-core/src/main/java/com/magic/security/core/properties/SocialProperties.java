@@ -1,6 +1,9 @@
 package com.magic.security.core.properties;
 
 public class SocialProperties {
+
+    private String filterProcessesUrl = "/auth";
+
     private QQProperties qq = new QQProperties();
 
     public QQProperties getQq() {
@@ -9,5 +12,13 @@ public class SocialProperties {
 
     public void setQq(QQProperties qq) {
         this.qq = qq;
+    }
+
+    public String getFilterProcessesUrl() {
+        return filterProcessesUrl;
+    }
+
+    public void setFilterProcessesUrl(String filterProcessesUrl) {
+        this.filterProcessesUrl = filterProcessesUrl;
     }
 }

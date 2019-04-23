@@ -14,6 +14,7 @@ server:
   servlet:
     session:
       timeout: 600
+  port: 80
 
 magic:
   security:
@@ -27,8 +28,11 @@ magic:
         #url: /user,/user/*
     social:
       qq:
-        app-id: 217911
-        app-secret: b68b1fe2abdf241466a0eae7731ab45
+        app-id: 100550231
+        app-secret: 69b6ab57b22f3c2fe6a6149274e3295e
+        providerId: callback.do
+      filterProcessesUrl: /qqLogin
+
 logging:
   level:
     com.magic.security: debug

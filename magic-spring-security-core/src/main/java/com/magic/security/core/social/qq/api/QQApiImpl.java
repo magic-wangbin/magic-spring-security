@@ -2,6 +2,8 @@ package com.magic.security.core.social.qq.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.TokenStrategy;
 
@@ -11,6 +13,8 @@ import java.io.IOException;
  * 获取用户信息api(非单例).
  */
 public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQApi {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     private static final String GET_USERINFO_URL = "https://graph.qq.com/user/get_user_info?oauth_consumer_key=%s&openid=%s";
 
@@ -31,7 +35,7 @@ public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQApi {
         String url = String.format(GET_OPENID_URL, accessToken);
         String result = getRestTemplate().getForObject(url, String.class);
 
-        System.out.println(result);
+        logger.info("{}请求的返回结果为{}", GET_OPENID_URL, result);
 
         this.openId = StringUtils.substringBetween(result, "openid\":\"", "\"}");
     }
@@ -42,6 +46,7 @@ public class QQApiImpl extends AbstractOAuth2ApiBinding implements QQApi {
         //
         String url = String.format(GET_USERINFO_URL, appId, openId);
         String qqUserInfoResponse = getRestTemplate().getForObject(url, String.class);
+        logger.info("请求为{}的返回结果{}", url, qqUserInfoResponse);
 
         try {
 

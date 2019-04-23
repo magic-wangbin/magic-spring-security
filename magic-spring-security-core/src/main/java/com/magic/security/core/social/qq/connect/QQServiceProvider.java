@@ -3,7 +3,6 @@ package com.magic.security.core.social.qq.connect;
 import com.magic.security.core.social.qq.api.QQApi;
 import com.magic.security.core.social.qq.api.QQApiImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
-import org.springframework.social.oauth2.OAuth2Template;
 
 public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQApi> {
 
@@ -14,7 +13,7 @@ public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQApi> {
     private final String appId;
 
     public QQServiceProvider(String appId, String appSecret) {
-        super(new OAuth2Template(appId,appSecret,AUTHORIZE_URL,GET_TOCKEN_URL));
+        super(new QQOAuth2Template(appId,appSecret,AUTHORIZE_URL,GET_TOCKEN_URL));
         this.appId = appId;
     }
 
@@ -22,4 +21,5 @@ public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQApi> {
     public QQApi getApi(String accessToken) {
         return new QQApiImpl(accessToken,appId);
     }
+
 }

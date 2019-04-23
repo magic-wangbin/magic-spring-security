@@ -40,7 +40,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     @Autowired
-    private SpringSocialConfigurer magicSocialSecurityConfig;
+    private SpringSocialConfigurer customSocialConfigurer;
 
 
     @Override
@@ -54,7 +54,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
             .apply(smsCodeAuthenticationSecurityConfig)
             .and()
 
-            .apply(magicSocialSecurityConfig)
+            .apply(customSocialConfigurer)
             .and()
 
             //记住我功能
