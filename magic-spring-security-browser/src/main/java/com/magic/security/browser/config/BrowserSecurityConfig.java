@@ -69,7 +69,11 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
             .antMatchers(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
                 SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 securityProperties.getBrowser().getLoginPage(),
-                SecurityConstants.DEFAULT_FAVICON_ICO)
+                securityProperties.getBrowser().getSignUpUrl(),
+                SecurityConstants.DEFAULT_FAVICON_ICO,
+                //其他第三方的配置 TODO
+                "/user/regist"
+                )
             .permitAll()
             .anyRequest()
             .authenticated()

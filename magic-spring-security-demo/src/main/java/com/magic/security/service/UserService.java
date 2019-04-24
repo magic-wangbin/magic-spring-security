@@ -4,4 +4,6 @@ import com.magic.security.dto.response.User;
 
 public interface UserService {
     public User findById(String userId);
+
+    public String save(String openId);
 }

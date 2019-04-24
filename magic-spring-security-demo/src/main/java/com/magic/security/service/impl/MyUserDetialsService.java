@@ -1,4 +1,4 @@
-package com.magic.security.browser.service;
+package com.magic.security.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,31 +23,34 @@ public class MyUserDetialsService implements UserDetailsService, SocialUserDetai
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        logger.info("登录用户名",username);
-        return buildUser(username);
+        logger.info("登录用户名", username);
+        String password = passwordEncoder.encode("123456");
+        logger.info("数据库密码是:" + password);
+        return buildUser(username, password);
     }
 
     /**
      * 根据用户Id查询第三方用户登录表信息.
+     *
      * @param userId
      * @return
      * @throws UsernameNotFoundException
      */
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-        return buildUser(userId);
+        return buildUser(userId, "");
     }
 
     /**
      * 创建用户.
+     *
      * @param userId
      * @return
      */
-    private SocialUserDetails buildUser(String userId) {
+    private SocialUserDetails buildUser(String userId, String password) {
         // 根据用户名查找用户信息
         //根据查找到的用户信息判断用户是否被冻结
-        String password = passwordEncoder.encode("123456");
-        logger.info("数据库密码是:"+password);
+
         return new SocialUser(userId, password,
             true, true, true, true,
             AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));

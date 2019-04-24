@@ -20,6 +20,7 @@ magic:
   security:
     browser:
 #      loginPage: /demo-signIn.html
+      signUpUrl: /demo-signUp.html
       loginType: JSON
     code:
       image:

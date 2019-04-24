@@ -8,8 +8,10 @@ import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
@@ -23,6 +25,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired
     private SecurityProperties securityProperties;
+
+    @Autowired(required = false)
+    private ConnectionSignUp connectionSignUp;
 
     /**
      * 数据库持久化配置.
@@ -38,13 +43,34 @@ public class SocialConfig extends SocialConfigurerAdapter {
             Encryptors.noOpText()
         );
         jdbcUsersConnectionRepository.setTablePrefix("magic_");
+        if(connectionSignUp != null) {
+            jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
+        }
         return jdbcUsersConnectionRepository;
     }
 
+    /**
+     * filter配置相关参数.
+     * @return
+     */
     @Bean
     public SpringSocialConfigurer customSocialConfigurer() {
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
-        return new CustomSocialConfigurer(filterProcessesUrl);
+        SpringSocialConfigurer springSocialConfigurer = new CustomSocialConfigurer(filterProcessesUrl);
+        springSocialConfigurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+        return springSocialConfigurer;
+    }
+
+    /**
+     * 授权后的基本信息交互的工具类.
+     * @param connectionFactoryLocator
+     * @return
+     */
+    @Bean
+    public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
+        return new ProviderSignInUtils(connectionFactoryLocator,
+            getUsersConnectionRepository(connectionFactoryLocator)) {
+        };
     }
 
 }

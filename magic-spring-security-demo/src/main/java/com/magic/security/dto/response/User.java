@@ -19,7 +19,6 @@ public class User {
     public interface UserSimpleView {};
     public interface UserDetailView extends UserSimpleView {};
 
-//    @UserValidator(message = "用户不存在！")
     private String userId;
 
     @JsonView(UserSimpleView.class)

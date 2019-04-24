@@ -6,6 +6,8 @@ public class BrowserProperties {
 
     private String loginPage = "/imooc-signIn.html";
 
+    private String signUpUrl = "/imooc-signUp.html";
+
     private LoginType loginType = LoginType.JSON;
 
     private int rememberMeSeconds = 3600;
@@ -16,6 +18,14 @@ public class BrowserProperties {
 
     public void setLoginPage(String loginPage) {
         this.loginPage = loginPage;
+    }
+
+    public String getSignUpUrl() {
+        return signUpUrl;
+    }
+
+    public void setSignUpUrl(String signUpUrl) {
+        this.signUpUrl = signUpUrl;
     }
 
     public LoginType getLoginType() {
