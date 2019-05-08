@@ -8,9 +8,11 @@ import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
 
@@ -43,7 +45,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
             Encryptors.noOpText()
         );
         jdbcUsersConnectionRepository.setTablePrefix("magic_");
-        if(connectionSignUp != null) {
+        if (connectionSignUp != null) {
             jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
         }
         return jdbcUsersConnectionRepository;
@@ -51,6 +53,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     /**
      * filter配置相关参数.
+     *
      * @return
      */
     @Bean
@@ -63,6 +66,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     /**
      * 授权后的基本信息交互的工具类.
+     *
      * @param connectionFactoryLocator
      * @return
      */
@@ -73,4 +77,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
         };
     }
 
+    @Bean
+    public ConnectController connectController(
+        ConnectionFactoryLocator connectionFactoryLocator,
+        ConnectionRepository connectionRepository) {
+        return new ConnectController(connectionFactoryLocator, connectionRepository);
+    }
 }
