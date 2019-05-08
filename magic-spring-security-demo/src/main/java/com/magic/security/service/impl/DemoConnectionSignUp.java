@@ -4,9 +4,8 @@ import com.magic.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DemoConnectionSignUp implements ConnectionSignUp {
 
     @Autowired
@@ -18,8 +17,9 @@ public class DemoConnectionSignUp implements ConnectionSignUp {
     @Override
     public String execute(Connection<?> connection) {
         //根据社交用户信息默认创建用户并返回用户唯一标识
-        String userId = userService.save(connection.createData().getProviderId());
-        return userId;
+//        String userId = userService.save(connection.createData().getProviderId());
+//        return userId;
+        return connection.getDisplayName();
     }
 
 }

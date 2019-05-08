@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -43,6 +44,9 @@ public class UserController extends BaseController {
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
         String userId = user.getUserName();
         providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+
+        //注册完毕直接登录【TODO】
+        //https://liuyanzhao.com/7563.html
     }
 
     @GetMapping("/me")
@@ -52,8 +56,6 @@ public class UserController extends BaseController {
 
 
     //==============================================================
-
-
 
 
     /**
