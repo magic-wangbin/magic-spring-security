@@ -19,19 +19,12 @@
             <version>${maigc.security.core.version}</version>
         </dependency>
 
-
+        <!--浏览器会使用session-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.session</groupId>-->
-            <!--<artifactId>spring-session-data-redis</artifactId>-->
+            <!--<artifactId>spring-session</artifactId>-->
+            <!--<version>1.3.5.RELEASE</version>-->
         <!--</dependency>-->
-
-
-        <!--浏览器会使用session-->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
-            <version>1.3.5.RELEASE</version>
-        </dependency>
 
     </dependencies>
 </project>
