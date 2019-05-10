@@ -1,16 +1,27 @@
 package com.magic.security.core.properties;
 
+import com.magic.security.core.properties.constans.SecurityConstants;
 import com.magic.security.core.properties.enums.LoginType;
 
 public class BrowserProperties {
 
-    private String loginPage = "/imooc-signIn.html";
+    private SessionProperties session = new SessionProperties();
+
+    private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 
     private String signUpUrl = "/imooc-signUp.html";
 
     private LoginType loginType = LoginType.JSON;
 
     private int rememberMeSeconds = 3600;
+
+    public SessionProperties getSession() {
+        return session;
+    }
+
+    public void setSession(SessionProperties session) {
+        this.session = session;
+    }
 
     public String getLoginPage() {
         return loginPage;

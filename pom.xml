@@ -22,7 +22,6 @@
         <maigc.security.browser.version>1.0.0-SNAPSHOT</maigc.security.browser.version>
     </properties>
 
-    <!--使用spring-io进行jar包版本的维护-->
     <dependencyManagement>
         <dependencies>
             <!-- 主要是spring-boot：2.0.8.RELEASE -->

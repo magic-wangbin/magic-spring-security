@@ -5,21 +5,24 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
   session:
-    store-type: none
+    store-type: REDIS # session存储类型[redis]
   jackson:
     serialization:
       write-dates-as-timestamps: true
+  redis:
+    host: 192.168.0.13
+    port: 6379
 
 server:
   servlet:
     session:
-      timeout: 600
-  port: 80
+      timeout: 600 # session过期时间，最低时间一分钟
+  port: 8080
 
 magic:
   security:
     browser:
-#      loginPage: /demo-signIn.html
+      #      loginPage: /demo-signIn.html
       signUpUrl: /demo-signUp.html
       loginType: JSON
     code:
