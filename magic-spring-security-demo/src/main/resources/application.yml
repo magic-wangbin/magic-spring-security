@@ -25,6 +25,7 @@ magic:
       #      loginPage: /demo-signIn.html
       signUpUrl: /demo-signUp.html
       loginType: JSON
+      logoutUrl: /imooc-logout.html # 配置自己的退出页面
     code:
       image:
         length: 4

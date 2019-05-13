@@ -11,6 +11,9 @@ public class BrowserProperties {
 
     private String signUpUrl = "/imooc-signUp.html";
 
+    //退出登录页面[默认为空，返回json]
+    private String logOutUrl;
+
     private LoginType loginType = LoginType.JSON;
 
     private int rememberMeSeconds = 3600;
@@ -37,6 +40,14 @@ public class BrowserProperties {
 
     public void setSignUpUrl(String signUpUrl) {
         this.signUpUrl = signUpUrl;
+    }
+
+    public String getLogOutUrl() {
+        return logOutUrl;
+    }
+
+    public void setLogOutUrl(String logOutUrl) {
+        this.logOutUrl = logOutUrl;
     }
 
     public LoginType getLoginType() {
