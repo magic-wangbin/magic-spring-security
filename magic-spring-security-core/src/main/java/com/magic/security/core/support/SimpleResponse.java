@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.magic.security.browser.support;
+package com.magic.security.core.support;
 
 /**
  * @author zhailiang

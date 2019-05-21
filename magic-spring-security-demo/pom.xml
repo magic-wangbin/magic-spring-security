@@ -12,10 +12,16 @@
     <artifactId>magic-spring-security-demo</artifactId>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>com.magic.security</groupId>-->
+            <!--<artifactId>magic-spring-security-browser</artifactId>-->
+            <!--<version>${maigc.security.browser.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>com.magic.security</groupId>
-            <artifactId>magic-spring-security-browser</artifactId>
-            <version>${maigc.security.browser.version}</version>
+            <artifactId>magic-spring-security-app</artifactId>
+            <version>${maigc.security.app.version}</version>
         </dependency>
 
         <dependency>

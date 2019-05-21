@@ -45,5 +45,14 @@ logging:
   level:
     com.magic.security: debug
 
+## 服务器分配的client-id和client-secret [服务测试]
+security:
+  oauth2:
+    client:
+      clientId: magic
+      clientSecret: magic123
+
+
+
 
 

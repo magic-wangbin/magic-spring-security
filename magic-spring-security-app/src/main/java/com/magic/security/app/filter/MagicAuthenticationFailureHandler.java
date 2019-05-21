@@ -1,4 +1,4 @@
-package com.magic.security.browser.filter;
+package com.magic.security.app.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magic.security.core.properties.SecurityProperties;
