@@ -1,6 +1,7 @@
 package com.magic.security.app.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.magic.security.core.properties.SecurityProperties;
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +30,8 @@ public class MagicAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @Autowired
-//    private SecurityProperties securityProperties;
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @Autowired
     private ClientDetailsService clientDetailsService;
@@ -50,7 +51,8 @@ public class MagicAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
         //
         String header = request.getHeader("Authorization");
         if (header == null || !header.toLowerCase().startsWith("basic ")) {
-            throw new UnapprovedClientAuthenticationException("header请求中basic配置信息不正确" + header);
+            super.onAuthenticationSuccess(request, response, authentication);
+            return;
         }
 
         String[] tokens = this.extractAndDecodeHeader(header, request);

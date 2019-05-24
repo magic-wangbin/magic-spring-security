@@ -20,5 +20,21 @@ import org.springframework.social.security.SpringSocialConfigurer;
  */
 @Configuration
 @EnableResourceServer
-public class MagicResourceServerConfig {
+public class MagicResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+    @Autowired
+    protected AuthenticationSuccessHandler magicAuthenticationSuccessHandler;
+
+    @Autowired
+    protected AuthenticationFailureHandler magicAuthenticationFailureHandler;
+
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        //用户名密码认证流程
+//        http.formLogin()
+//            .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
+//            .loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
+//            .successHandler(magicAuthenticationSuccessHandler)
+//            .failureHandler(magicAuthenticationFailureHandler);
+//    }
 }
