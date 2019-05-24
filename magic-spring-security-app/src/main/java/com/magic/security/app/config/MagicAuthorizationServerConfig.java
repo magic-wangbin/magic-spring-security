@@ -16,7 +16,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
  */
 @Configuration
 @EnableAuthorizationServer
-@EnableWebSecurity
 public class MagicAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
