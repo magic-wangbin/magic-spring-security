@@ -50,8 +50,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         ////验证码拦截器
         http
-            //.apply(validateCodeSecurityConfig)//
-            //.and()
+            .apply(validateCodeSecurityConfig)//
+            .and()
             //手机号认证流程
             .apply(smsCodeAuthenticationSecurityConfig)
             .and()

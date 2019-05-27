@@ -30,7 +30,7 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
         }
 
         //查询到之后继续封装token
-        SmsCodeAuthenticationToken smsCodeAuthResult = new SmsCodeAuthenticationToken(mobile,authentication.getAuthorities());
+        SmsCodeAuthenticationToken smsCodeAuthResult = new SmsCodeAuthenticationToken(userDetails,userDetails.getAuthorities());
         //封装其他信息如request信息
         smsCodeAuthResult.setDetails(authentication.getDetails());
 
