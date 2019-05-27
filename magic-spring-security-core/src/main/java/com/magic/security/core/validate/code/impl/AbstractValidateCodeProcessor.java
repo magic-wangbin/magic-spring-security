@@ -62,7 +62,7 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
      */
     private void save(ServletWebRequest request, T validateCode) {
         ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
-        validateCodeRepository.save(request, validateCode, getValidateCodeType());
+        validateCodeRepository.save(request, code, getValidateCodeType());
     }
 
     /**
