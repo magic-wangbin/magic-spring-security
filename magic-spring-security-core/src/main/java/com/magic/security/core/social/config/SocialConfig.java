@@ -1,10 +1,11 @@
 package com.magic.security.core.social.config;
 
 import com.magic.security.core.properties.SecurityProperties;
+import com.magic.security.core.social.support.CustomSocialConfigurer;
+import com.magic.security.core.social.support.SocialAuthenticationFilterPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -31,6 +32,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired(required = false)
     private ConnectionSignUp connectionSignUp;
+
+    @Autowired(required = false)
+    private SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
 
     /**
      * 数据库持久化配置.
@@ -60,8 +64,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Bean
     public SpringSocialConfigurer customSocialConfigurer() {
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
-        SpringSocialConfigurer springSocialConfigurer = new CustomSocialConfigurer(filterProcessesUrl);
+        CustomSocialConfigurer springSocialConfigurer = new CustomSocialConfigurer(filterProcessesUrl);
         springSocialConfigurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+        springSocialConfigurer.setSocialAuthenticationFilterPostProcessor(socialAuthenticationFilterPostProcessor);
 
         return springSocialConfigurer;
     }

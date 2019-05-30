@@ -4,8 +4,9 @@ import com.magic.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
+import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class DemoConnectionSignUp implements ConnectionSignUp {
 
     @Autowired
