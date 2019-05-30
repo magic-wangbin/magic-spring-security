@@ -4,6 +4,7 @@ import com.magic.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -61,6 +62,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
         SpringSocialConfigurer springSocialConfigurer = new CustomSocialConfigurer(filterProcessesUrl);
         springSocialConfigurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+
         return springSocialConfigurer;
     }
 
@@ -83,4 +85,5 @@ public class SocialConfig extends SocialConfigurerAdapter {
         ConnectionRepository connectionRepository) {
         return new ConnectController(connectionFactoryLocator, connectionRepository);
     }
+
 }

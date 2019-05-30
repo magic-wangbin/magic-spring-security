@@ -1,5 +1,6 @@
 package com.magic.security.app;
 
+import com.magic.security.app.authentication.openId.OpenIdAuthenticationSecurityConfig;
 import com.magic.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.magic.security.core.properties.SecurityProperties;
 import com.magic.security.core.properties.constans.SecurityConstants;
@@ -39,6 +40,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private OpenIdAuthenticationSecurityConfig openIdAuthenticationSecurityConfig;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         //用户名密码认证流程
@@ -48,15 +52,23 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
             .successHandler(magicAuthenticationSuccessHandler)
             .failureHandler(magicAuthenticationFailureHandler);
 
-        ////验证码拦截器
+        //
         http
+
+            //验证码拦截器
             .apply(validateCodeSecurityConfig)//
             .and()
+
             //手机号认证流程
             .apply(smsCodeAuthenticationSecurityConfig)
             .and()
 
+            //第三方处理
             .apply(customSocialConfigurer)
+            .and()
+
+            //openId登录拦截
+            .apply(openIdAuthenticationSecurityConfig)
             .and()
 
             //非拦截的请求
@@ -87,6 +99,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 需要配置这个支持password模式
      * support password grant type
+     *
      * @return
      * @throws Exception
      */
