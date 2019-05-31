@@ -12,8 +12,8 @@
 //@Component
 //public class SocialAuthenticationFilterPostProcessorImpl implements SocialAuthenticationFilterPostProcessor {
 //
-//    @Autowired
-//    protected AuthenticationSuccessHandler magicAuthenticationSuccessHandler;
+//    @Autowired(required = false)
+//    private AuthenticationSuccessHandler magicAuthenticationSuccessHandler;
 //
 //    /**
 //     * @param socialAuthenticationFilter

@@ -1,7 +1,6 @@
 package com.magic.security.app.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.magic.security.core.properties.SecurityProperties;
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +28,6 @@ public class MagicAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @Autowired
-    private SecurityProperties securityProperties;
 
     @Autowired
     private ClientDetailsService clientDetailsService;

@@ -22,11 +22,11 @@ import org.springframework.social.security.SpringSocialConfigurer;
 @EnableResourceServer
 public class MagicResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @Autowired
-    protected AuthenticationSuccessHandler magicAuthenticationSuccessHandler;
-
-    @Autowired
-    protected AuthenticationFailureHandler magicAuthenticationFailureHandler;
+//    @Autowired
+//    protected AuthenticationSuccessHandler magicAuthenticationSuccessHandler;
+//
+//    @Autowired
+//    protected AuthenticationFailureHandler magicAuthenticationFailureHandler;
 
 //    @Override
 //    public void configure(HttpSecurity http) throws Exception {

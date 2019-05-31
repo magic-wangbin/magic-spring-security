@@ -1,6 +1,7 @@
 package com.magic.security.web;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.magic.security.app.social.AppSingUpUtils;
 import com.magic.security.dto.request.UserQueryCondition;
 import com.magic.security.dto.response.User;
 import com.magic.security.validator.annotacion.UserValidator;
@@ -35,6 +36,12 @@ public class UserController extends BaseController {
     private ProviderSignInUtils providerSignInUtils;
 
     /**
+     * App注册.
+     */
+    @Autowired
+    private AppSingUpUtils appSingUpUtils;
+
+    /**
      * 用户注册
      */
     @PostMapping("/regist")
@@ -42,7 +49,8 @@ public class UserController extends BaseController {
 
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
         String userId = user.getUserName();
-        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+//        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
+        appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
 
         //注册完毕直接登录【TODO】
         //https://liuyanzhao.com/7563.html

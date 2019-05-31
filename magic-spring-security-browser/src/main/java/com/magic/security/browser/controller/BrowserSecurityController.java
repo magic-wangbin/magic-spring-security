@@ -1,8 +1,10 @@
 package com.magic.security.browser.controller;
 
-import com.magic.security.browser.support.SocialUserInfo;
 import com.magic.security.core.properties.SecurityProperties;
+import com.magic.security.core.properties.constans.SecurityConstants;
+import com.magic.security.core.social.controller.SocialController;
 import com.magic.security.core.support.SimpleResponse;
+import com.magic.security.core.support.SocialUserInfo;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ import java.io.IOException;
  * 登录跳转使用.
  */
 @RestController
-public class BrowserSecurityController {
+public class BrowserSecurityController extends SocialController {
 
     private Logger logger = LoggerFactory.getLogger(BrowserSecurityController.class);
 
@@ -69,8 +71,13 @@ public class BrowserSecurityController {
         return new SimpleResponse("访问的服务需要身份认证，请先进行登录!");
     }
 
-
-    @GetMapping("/social/user")
+    /**
+     * 用户第一次社交登录时，会引导用户进行用户注册或绑定，此服务用于在注册或绑定页面获取社交网站用户信息
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping(SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL)
     public SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -80,12 +87,9 @@ public class BrowserSecurityController {
             logger.info("openId:" + openId);
         }
 
-        SocialUserInfo userInfo = new SocialUserInfo();
+
         Connection<?> connection = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(request));
-        userInfo.setProviderId(connection.getKey().getProviderId());
-        userInfo.setProviderUserId(connection.getKey().getProviderUserId());
-        userInfo.setNickname(connection.getDisplayName());
-        userInfo.setHeadimg(connection.getImageUrl());
-        return userInfo;
+        return buildSocialUserInfo(connection);
     }
+
 }

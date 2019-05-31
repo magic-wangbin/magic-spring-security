@@ -17,7 +17,7 @@ server:
   servlet:
     session:
       timeout: 600 # session过期时间，最低时间一分钟
-  port: 80
+  port: 8080
 
 magic:
   security:
@@ -40,17 +40,22 @@ magic:
         app-id: wxd99431bbff8305a0
         app-secret: 60f78681d063590a469f1b297feff3c4
       filterProcessesUrl: /qqLogin
+    oauth2:
+      tokenStore: redis
+      ### 服务器分配的client-id和client-secret [服务测试]
+      clients[0]:
+        clientId: magic
+        clientSecret: magic123
+        accessTokenValidateSeconds: 3600
+      client[1]:
+        clientId: test
+        clientSecret: test123
+level:
+  com.magic.security: debug
 
-logging:
-  level:
-    com.magic.security: debug
 
-## 服务器分配的client-id和client-secret [服务测试]
-security:
-  oauth2:
-    client:
-      clientId: magic
-      clientSecret: magic123
+
+
 
 
 

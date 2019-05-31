@@ -3,9 +3,13 @@ package com.magic.security.core.social.config;
 import com.magic.security.core.properties.SecurityProperties;
 import com.magic.security.core.social.support.CustomSocialConfigurer;
 import com.magic.security.core.social.support.SocialAuthenticationFilterPostProcessor;
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
@@ -18,6 +22,7 @@ import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.SpringSocialConfigurer;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
@@ -63,6 +68,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
      */
     @Bean
     public SpringSocialConfigurer customSocialConfigurer() {
+
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
         CustomSocialConfigurer springSocialConfigurer = new CustomSocialConfigurer(filterProcessesUrl);
         springSocialConfigurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());

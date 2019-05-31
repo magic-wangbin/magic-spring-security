@@ -85,7 +85,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 //退出登录页
                 securityProperties.getBrowser().getLogOutUrl(),
 
-                "/user/regist"
+                "/user/regist",SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL,
+                "/oauth/token"
             )
             .permitAll()
             .anyRequest()
