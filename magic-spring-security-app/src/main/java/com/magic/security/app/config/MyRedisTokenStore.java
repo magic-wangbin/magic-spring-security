@@ -151,9 +151,9 @@ public class MyRedisTokenStore implements TokenStore {
         RedisConnection conn = getConnection();
         try {
             conn.openPipeline();
-            conn.set(accessKey, serializedAccessToken);
-            conn.set(authKey, serializedAuth);
-            conn.set(authToAccessKey, serializedAccessToken);
+            conn.stringCommands().set(accessKey, serializedAccessToken);
+            conn.stringCommands().set(authKey, serializedAuth);
+            conn.stringCommands().set(authToAccessKey, serializedAccessToken);
             if (!authentication.isClientOnly()) {
                 conn.rPush(approvalKey, serializedAccessToken);
             }
