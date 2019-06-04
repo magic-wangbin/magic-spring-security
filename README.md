@@ -1,7 +1,3 @@
 # magic-spring-security
-spring security
-
-# 拦截流程
-# 1：请求->filter -> interceptor -> controllerAdvice -> aspect  -> controller
-# 2：返回->controller -> aspect -> controllerAdvice -> interceptor -> filter
+本项目基于imooc-security项目进行修改，使用了Spring IO Platform Cairo-SR7（SpringBoot 2.0.8） 进行jar包进行管理。
 
