@@ -44,61 +44,54 @@ public class MagicResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        //用户名密码认证流程
-//        http.formLogin()
-//            .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
-//            .loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
-//            .successHandler(magicAuthenticationSuccessHandler)
-//            .failureHandler(magicAuthenticationFailureHandler);
-//
-//        //
-//        http
-//
-//            //验证码拦截器
-//            .apply(validateCodeSecurityConfig)//
-//            .and()
-//
-//            //手机号认证流程
-//            .apply(smsCodeAuthenticationSecurityConfig)
-//            .and()
-//
-//            //第三方处理
-//            .apply(customSocialConfigurer)
-//            .and()
-//
-//            //openId登录拦截
-//            .apply(openIdAuthenticationSecurityConfig)
-//            .and()
-//
-//            //非拦截的请求
-//            .authorizeRequests()
-//            .antMatchers(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-//                SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-//                securityProperties.getBrowser().getLoginPage(),
-//                securityProperties.getBrowser().getSignUpUrl(),
-//                SecurityConstants.DEFAULT_FAVICON_ICO,
-//
-//                //其他第三方的配置 TODO
-//                securityProperties.getBrowser().getSession().getSessionInvalidUrl() + ".json",
-//                securityProperties.getBrowser().getSession().getSessionInvalidUrl() + ".html",
-//                //退出登录页
-//                securityProperties.getBrowser().getLogOutUrl(),
-//
-//                "/user/regist", SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL
-//            )
-//            .permitAll()
-//            .anyRequest()
-//            .authenticated()
-//            .and()
-//
-//            //csrf禁用
-//            .csrf().disable();
-
+        //用户名密码认证流程
         http.formLogin()
-            .successHandler(magicAuthenticationSuccessHandler)//登录成功处理器
-            .and()
-            .authorizeRequests().anyRequest().authenticated().and()
-            .csrf().disable();
+            .loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
+            .loginProcessingUrl(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM)
+            .successHandler(magicAuthenticationSuccessHandler)
+            .failureHandler(magicAuthenticationFailureHandler);
 
+        //
+        http
+
+            //验证码拦截器
+            .apply(validateCodeSecurityConfig)//
+            .and()
+
+            //手机号认证流程
+            .apply(smsCodeAuthenticationSecurityConfig)
+            .and()
+
+            //第三方处理
+            .apply(customSocialConfigurer)
+            .and()
+
+            //openId登录拦截
+            .apply(openIdAuthenticationSecurityConfig)
+            .and()
+
+            //非拦截的请求
+            .authorizeRequests()
+            .antMatchers(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
+                SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                securityProperties.getBrowser().getLoginPage(),
+                securityProperties.getBrowser().getSignUpUrl(),
+                SecurityConstants.DEFAULT_FAVICON_ICO,
+
+                //其他第三方的配置 TODO
+                securityProperties.getBrowser().getSession().getSessionInvalidUrl() + ".json",
+                securityProperties.getBrowser().getSession().getSessionInvalidUrl() + ".html",
+                //退出登录页
+                securityProperties.getBrowser().getLogOutUrl(),
+
+                "/user/regist", SecurityConstants.DEFAULT_SOCIAL_USER_INFO_URL
+            )
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+
+            //csrf禁用
+            .csrf().disable();
     }
 }
