@@ -16,15 +16,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.social.security.SpringSocialConfigurer;
-
+@Order(1)
 @Configuration
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .httpBasic().and()
-            .csrf().disable();
+        http.requestMatchers()
+            .antMatchers("/login", "/oauth/authorize")
+            .and()
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .permitAll()
+            .and().csrf().disable();
     }
 
     /**
