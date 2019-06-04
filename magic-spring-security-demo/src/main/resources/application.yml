@@ -41,17 +41,19 @@ magic:
         app-secret: 60f78681d063590a469f1b297feff3c4
       filterProcessesUrl: /qqLogin
     oauth2:
-      tokenStore: redis
+      tokenStore: jwt
       ### 服务器分配的client-id和client-secret [服务测试]
       clients[0]:
         clientId: magic
         clientSecret: magic123
-        accessTokenValidateSeconds: 3600
+        accessTokenValidateSeconds: 7200
       client[1]:
         clientId: test
         clientSecret: test123
-level:
-  com.magic.security: debug
+
+logging:
+  level:
+    org.springframework: debug
 
 
 

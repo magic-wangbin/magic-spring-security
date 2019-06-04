@@ -13,7 +13,14 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 认证服务.
@@ -37,13 +44,30 @@ public class MagicAuthorizationServerConfig extends AuthorizationServerConfigure
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired(required = false)
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
+
+    @Autowired(required = false)
+    private TokenEnhancer jwtTokenEnhancer;
+
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-        throws Exception {
-        endpoints
-            .tokenStore(tokenStore)
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+
+        endpoints.tokenStore(tokenStore)
             .authenticationManager(authenticationManager)
             .userDetailsService(userDetailsService);
+        //扩展token返回结果
+        if (jwtAccessTokenConverter != null && jwtTokenEnhancer != null) {
+            TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+            List<TokenEnhancer> enhancerList = new ArrayList();
+            enhancerList.add(jwtTokenEnhancer);
+            enhancerList.add(jwtAccessTokenConverter);
+            tokenEnhancerChain.setTokenEnhancers(enhancerList);
+            //jwt
+            endpoints.tokenEnhancer(tokenEnhancerChain)
+                .accessTokenConverter(jwtAccessTokenConverter);
+        }
+
     }
 
     /**
@@ -57,15 +81,25 @@ public class MagicAuthorizationServerConfig extends AuthorizationServerConfigure
             for (OAuth2ClientProperties client : securityProperties.getOauth2().getClients()) {
                 builder.withClient(client.getClientId())
                     .secret(passwordEncoder.encode(client.getClientSecret()))
-                    //.redirectUris("http://example.com")
-                    .authorizedGrantTypes("refresh_token", "authorization_code", "password")
+                    .redirectUris("http://example.com")
+                    .authorizedGrantTypes("refresh_token", "password", "authorization_code")
                     .accessTokenValiditySeconds(client.getAccessTokenValidateSeconds())
                     .refreshTokenValiditySeconds(2592000)
                     .scopes("all");
             }
         }
+    }
 
-
+    /**
+     * springSecurity 授权表达式，
+     *
+     * @param security
+     * @throws Exception
+     */
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()");
+        security.checkTokenAccess("isAuthenticated()");
     }
 
 }

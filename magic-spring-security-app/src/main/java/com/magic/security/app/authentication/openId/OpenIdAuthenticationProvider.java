@@ -32,6 +32,7 @@ public class OpenIdAuthenticationProvider implements AuthenticationProvider {
         Set<String> userIds = usersConnectionRepository.findUserIdsConnectedTo(authenticationToken.getProviderId(), providerUserIds);
 
         if (CollectionUtils.isEmpty(userIds) || userIds.size() != 1) {
+            //用户尚未进行登录
             throw new InternalAuthenticationServiceException("无法获取用户信息");
         }
 

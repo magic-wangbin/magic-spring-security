@@ -56,6 +56,18 @@
             <artifactId>spring-social-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <!--<version>1.0.9.RELEASE</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
         <!--常用的工具类-->
         <dependency>
             <groupId>commons-lang</groupId>
