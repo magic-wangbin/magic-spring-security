@@ -12,17 +12,17 @@
     <artifactId>magic-spring-security-demo</artifactId>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.magic.security</groupId>-->
-            <!--<artifactId>magic-spring-security-browser</artifactId>-->
-            <!--<version>${maigc.security.browser.version}</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>com.magic.security</groupId>
-            <artifactId>magic-spring-security-app</artifactId>
-            <version>${maigc.security.app.version}</version>
+            <artifactId>magic-spring-security-browser</artifactId>
+            <version>${maigc.security.browser.version}</version>
         </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>com.magic.security</groupId>-->
+        <!--<artifactId>magic-spring-security-app</artifactId>-->
+        <!--<version>${maigc.security.app.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -47,6 +47,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
         </dependency>
 
     </dependencies>

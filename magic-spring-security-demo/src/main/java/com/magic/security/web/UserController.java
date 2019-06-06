@@ -1,12 +1,14 @@
 package com.magic.security.web;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.magic.security.app.social.AppSingUpUtils;
+import com.magic.security.core.properties.SecurityProperties;
 import com.magic.security.dto.request.UserQueryCondition;
 import com.magic.security.dto.response.User;
 import com.magic.security.validator.annotacion.UserValidator;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -15,7 +17,6 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -28,6 +29,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 
     //==============================================================
 
@@ -37,8 +40,11 @@ public class UserController extends BaseController {
     /**
      * App注册.
      */
+//    @Autowired
+//    private AppSingUpUtils appSingUpUtils;
+
     @Autowired
-    private AppSingUpUtils appSingUpUtils;
+    private SecurityProperties securityProperties;
 
     /**
      * 用户注册
@@ -49,7 +55,7 @@ public class UserController extends BaseController {
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
         String userId = user.getUserName();
 //        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
-        appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
+//        appSingUpUtils.doPostSignUp(new ServletWebRequest(request), userId);
 
         //注册完毕直接登录【TODO】
         //https://liuyanzhao.com/7563.html
@@ -59,7 +65,19 @@ public class UserController extends BaseController {
     public Object getCurrentUser(
 //        @AuthenticationPrincipal UserDetails user
         Authentication user, HttpServletRequest request
-    ) {
+    ) throws Exception {
+//        //获取token
+//        String token = StringUtils.substringAfter(request.getHeader("Authorization"), "bearer ");
+//        //解析
+//        Claims claims = Jwts.parser()
+//            .setSigningKey(securityProperties.getOauth2().getSignKey().getBytes("UTF-8"))
+//            .parseClaimsJws(token).getBody();
+//
+//        //获取token中的数据
+//        String company = (String) claims.get("company");
+//
+//        logger.info("token 数据解析 company->" + company);
+
         return user;
     }
 
