@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.magic.security</groupId>
             <artifactId>magic-spring-security-core</artifactId>
-            <version>${maigc.security.core.version}</version>
+            <version>${magic.security.core.version}</version>
         </dependency>
 
         <!--浏览器会使用session-->

@@ -12,14 +12,16 @@
         <module>magic-spring-security-app</module>
         <module>magic-spring-security-browser</module>
         <module>magic-spring-security-demo</module>
+        <module>magic-spring-security-authorize</module>
     </modules>
     <packaging>pom</packaging>
 
     <!--自定义变量-->
     <properties>
-        <maigc.security.core.version>1.0.0-SNAPSHOT</maigc.security.core.version>
-        <maigc.security.app.version>1.0.0-SNAPSHOT</maigc.security.app.version>
-        <maigc.security.browser.version>1.0.0-SNAPSHOT</maigc.security.browser.version>
+        <magic.security.core.version>1.0.0-SNAPSHOT</magic.security.core.version>
+        <magic.security.app.version>1.0.0-SNAPSHOT</magic.security.app.version>
+        <magic.security.browser.version>1.0.0-SNAPSHOT</magic.security.browser.version>
+        <magic.security.authorize.version>1.0.0-SNAPSHOT</magic.security.authorize.version>
     </properties>
 
     <dependencyManagement>

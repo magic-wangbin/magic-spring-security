@@ -15,14 +15,21 @@
         <dependency>
             <groupId>com.magic.security</groupId>
             <artifactId>magic-spring-security-browser</artifactId>
-            <version>${maigc.security.browser.version}</version>
+            <version>${magic.security.browser.version}</version>
         </dependency>
 
         <!--<dependency>-->
         <!--<groupId>com.magic.security</groupId>-->
         <!--<artifactId>magic-spring-security-app</artifactId>-->
-        <!--<version>${maigc.security.app.version}</version>-->
+        <!--<version>${magic.security.app.version}</version>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.magic.security</groupId>
+            <artifactId>magic-spring-security-authorize</artifactId>
+            <version>${magic.security.authorize.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

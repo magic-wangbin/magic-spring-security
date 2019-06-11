@@ -15,7 +15,7 @@ public class DemoAuthorizeConifgProvider implements AuthorizeConfigProvider {
      */
     @Override
     public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-        config.antMatchers("/user/me").hasRole("ADMIN2");//仅仅是一个测试.
+        config.antMatchers("/user/me").hasRole("ADMIN");//仅仅是一个测试.
         return false;
     }
 }
