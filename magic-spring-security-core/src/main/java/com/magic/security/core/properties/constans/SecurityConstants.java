@@ -25,6 +25,11 @@ public interface SecurityConstants {
      * @see SecurityController
      */
     String DEFAULT_LOGIN_PAGE_URL = "/imooc-signIn.html";
+
+    /**
+     * 默认注册页面.
+     */
+    String DEFAULT_SIGN_UP_PAGE = "/imooc-signUp.html";
     /**
      * 验证图片验证码时，http请求中默认的携带图片验证码信息的参数的名称
      */
@@ -73,4 +78,14 @@ public interface SecurityConstants {
      * 默认的OPENID登录请求处理url
      */
     String DEFAULT_SIGN_IN_PROCESSING_URL_OPENID = "/authentication/openid";
+
+    /**
+     * 退出登录URL.
+     */
+    String LOGIN_OUT_URL = "/signOut";
+
+    /**
+     * JESSION_ID
+     */
+    String JSESSION_ID = "JSESSIONID";
 }

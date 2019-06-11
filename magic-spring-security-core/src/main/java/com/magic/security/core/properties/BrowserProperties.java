@@ -9,7 +9,7 @@ public class BrowserProperties {
 
     private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
 
-    private String signUpUrl = "/imooc-signUp.html";
+    private String signUpUrl = SecurityConstants.DEFAULT_SIGN_UP_PAGE;
 
     //退出登录页面[默认为空，返回json]
     private String logOutUrl;
