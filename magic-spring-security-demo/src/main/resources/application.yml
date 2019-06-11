@@ -4,14 +4,32 @@ spring:
     password: root
     url: jdbc:mysql://127.0.0.1:3306/security-demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+    max-active: 100
+    min-idle: 10
+    min-evictable-idle-time-millis: 1800000
+    test-on-borrow: true
+    test-on-return: true
+    test-while-idle: true
+    validation-query: select 1
   session:
-    store-type: REDIS # session存储类型[redis]
+    store-type: none # session存储类型[redis]
   jackson:
     serialization:
       write-dates-as-timestamps: true
   redis:
     host: 192.168.0.13
     port: 6379
+
+## JPA
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      naming:
+        implicit-strategy: com.magic.security.rbac.repository.support.ImoocImplicitNamingStrategy
 
 server:
   servlet:
@@ -24,8 +42,10 @@ magic:
     browser:
       #      loginPage: /demo-signIn.html
       signUpUrl: /demo-signUp.html
-      loginType: JSON
+      loginType: REDIRECT
       logoutUrl: /imooc-logout.html # 配置自己的退出页面
+      singInSuccessUrl: /manage.html
+
     code:
       image:
         length: 4
@@ -53,7 +73,7 @@ magic:
 
 logging:
   level:
-    org.springframework: debug
+    org.springframework: info
 
 
 

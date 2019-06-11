@@ -18,6 +18,13 @@ public class BrowserProperties {
 
     private int rememberMeSeconds = 3600;
 
+    /**
+     * 登录成功后跳转的地址，如果设置了此属性，则登录成功后总是会跳到这个地址上。
+     * <p>
+     * 只在signInResponseType为REDIRECT时生效
+     */
+    private String singInSuccessUrl;
+
     public SessionProperties getSession() {
         return session;
     }
@@ -64,5 +71,13 @@ public class BrowserProperties {
 
     public void setRememberMeSeconds(int rememberMeSeconds) {
         this.rememberMeSeconds = rememberMeSeconds;
+    }
+
+    public String getSingInSuccessUrl() {
+        return singInSuccessUrl;
+    }
+
+    public void setSingInSuccessUrl(String singInSuccessUrl) {
+        this.singInSuccessUrl = singInSuccessUrl;
     }
 }
