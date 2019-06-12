@@ -1,7 +1,7 @@
 package com.magic.security.core.properties.enums;
 
-public enum LoginType {
+public enum SignInResponseType {
     REDIRECT,//跳转
     JSON;
-    LoginType(){}
+    SignInResponseType(){}
 }

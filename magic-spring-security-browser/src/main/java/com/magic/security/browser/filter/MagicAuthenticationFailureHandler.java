@@ -2,7 +2,7 @@ package com.magic.security.browser.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.magic.security.core.properties.SecurityProperties;
-import com.magic.security.core.properties.enums.LoginType;
+import com.magic.security.core.properties.enums.SignInResponseType;
 import com.magic.security.core.support.SimpleResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class MagicAuthenticationFailureHandler extends SimpleUrlAuthenticationFa
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException e) throws IOException, ServletException {
-        if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())){
+        if(SignInResponseType.JSON.equals(securityProperties.getBrowser().getSignInResponseType())){
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(e.getMessage())));

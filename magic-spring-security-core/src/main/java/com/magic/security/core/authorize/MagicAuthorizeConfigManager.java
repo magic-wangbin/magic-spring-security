@@ -37,5 +37,9 @@ public class MagicAuthorizeConfigManager implements AuthorizeConfigManager {
                 isAnyRequestConfigName = currentConfigName;
             }
         }
+
+        if (!isAnyRequestConfig) {
+            config.anyRequest().authenticated();
+        }
     }
 }

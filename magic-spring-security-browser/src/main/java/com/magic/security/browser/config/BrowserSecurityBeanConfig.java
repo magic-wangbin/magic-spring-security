@@ -28,13 +28,13 @@ public class BrowserSecurityBeanConfig {
     @Bean
     @ConditionalOnMissingBean(InvalidSessionStrategy.class)
     public InvalidSessionStrategy invalidSessionStrategy() {
-        return new CusInvalidSessionStrategy(securityProperties.getBrowser().getSession().getSessionInvalidUrl());
+        return new CusInvalidSessionStrategy(securityProperties);
     }
 
     @Bean
     @ConditionalOnMissingBean(SessionInformationExpiredStrategy.class)
     public SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
-        return new CusExpiredSessionStrategy(securityProperties.getBrowser().getSession().getSessionInvalidUrl());
+        return new CusExpiredSessionStrategy(securityProperties);
     }
 
     /**

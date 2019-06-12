@@ -1,7 +1,7 @@
 package com.magic.security.core.properties;
 
 import com.magic.security.core.properties.constans.SecurityConstants;
-import com.magic.security.core.properties.enums.LoginType;
+import com.magic.security.core.properties.enums.SignInResponseType;
 
 public class BrowserProperties {
 
@@ -14,7 +14,7 @@ public class BrowserProperties {
     //退出登录页面[默认为空，返回json]
     private String logOutUrl;
 
-    private LoginType loginType = LoginType.JSON;
+    private SignInResponseType signInResponseType = SignInResponseType.JSON;
 
     private int rememberMeSeconds = 3600;
 
@@ -57,12 +57,12 @@ public class BrowserProperties {
         this.logOutUrl = logOutUrl;
     }
 
-    public LoginType getLoginType() {
-        return loginType;
+    public SignInResponseType getSignInResponseType() {
+        return signInResponseType;
     }
 
-    public void setLoginType(LoginType loginType) {
-        this.loginType = loginType;
+    public void setSignInResponseType(SignInResponseType signInResponseType) {
+        this.signInResponseType = signInResponseType;
     }
 
     public int getRememberMeSeconds() {

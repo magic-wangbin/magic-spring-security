@@ -15,7 +15,6 @@ public class DemoAuthorizeConifgProvider implements AuthorizeConfigProvider {
      */
     @Override
     public boolean config(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config) {
-        config.antMatchers("/user/me").permitAll();//仅仅是一个测试.
         return false;
     }
 }

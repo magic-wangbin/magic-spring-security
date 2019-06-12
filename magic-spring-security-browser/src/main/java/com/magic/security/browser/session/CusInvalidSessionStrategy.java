@@ -1,5 +1,6 @@
 package com.magic.security.browser.session;
 
+import com.magic.security.core.properties.SecurityProperties;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,8 @@ import java.io.IOException;
  */
 public class CusInvalidSessionStrategy extends AbstractSessionStrategy implements InvalidSessionStrategy {
 
-    public CusInvalidSessionStrategy(String invalidSessionUrl) {
-        super(invalidSessionUrl);
+    public CusInvalidSessionStrategy(SecurityProperties securityProperties) {
+        super(securityProperties);
     }
 
     @Override

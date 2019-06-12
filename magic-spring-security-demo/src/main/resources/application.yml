@@ -12,7 +12,7 @@ spring:
     test-while-idle: true
     validation-query: select 1
   session:
-    store-type: none # session存储类型[redis]
+    store-type: redis # session存储类型[redis]
   jackson:
     serialization:
       write-dates-as-timestamps: true
@@ -35,7 +35,7 @@ server:
   servlet:
     session:
       timeout: 600 # session过期时间，最低时间一分钟
-  port: 8080
+  port: 80
 
 magic:
   security:

@@ -1,5 +1,6 @@
 package com.magic.security.browser.session;
 
+import com.magic.security.core.properties.SecurityProperties;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 
@@ -11,8 +12,8 @@ import java.io.IOException;
 public class CusExpiredSessionStrategy extends AbstractSessionStrategy implements SessionInformationExpiredStrategy {
 
 
-    public CusExpiredSessionStrategy(String invalidSessionUrl) {
-        super(invalidSessionUrl);
+    public CusExpiredSessionStrategy(SecurityProperties securityProperties) {
+        super(securityProperties);
     }
 
     @Override
