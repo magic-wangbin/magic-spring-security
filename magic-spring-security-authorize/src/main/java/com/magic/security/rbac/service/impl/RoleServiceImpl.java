@@ -64,7 +64,6 @@ public class RoleServiceImpl implements RoleService {
 
     /**
      * (non-Javadoc)
-     * @see com.idea.ams.service.RoleService#delete(Long)
      */
     @Override
     public void delete(Long id) {

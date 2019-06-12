@@ -53,7 +53,7 @@ public class Admin implements UserDetails {
     /**
      * 用户的所有角色
      */
-    @OneToMany(mappedBy = "admin", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.REMOVE)
     private Set<RoleAdmin> roles = new HashSet<>();
     /**
      * 用户有权访问的所有url，不持久化到数据库

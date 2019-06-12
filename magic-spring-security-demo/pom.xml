@@ -24,11 +24,11 @@
         <!--<version>${magic.security.app.version}</version>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>com.magic.security</groupId>
-            <artifactId>magic-spring-security-authorize</artifactId>
-            <version>${magic.security.authorize.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.magic.security</groupId>-->
+            <!--<artifactId>magic-spring-security-authorize</artifactId>-->
+            <!--<version>${magic.security.authorize.version}</version>-->
+        <!--</dependency>-->
 
 
         <dependency>
